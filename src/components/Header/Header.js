@@ -6,13 +6,15 @@ import CartButton from "./CartButton";
 const Header = () => {
 
     return (
-        <div>
+        <React.Fragment>
             <header className={classes.header} >
                 <h1>ReactMeals</h1>
+                <CartButton type="button" />
             </header>
-            <CartButton type="button" />
-            <img className={classes['main-image']} src={image} />
-        </div>
+            <div className={classes['main-image']}>
+                <img src={image} alt="Image header" />
+            </div>
+        </React.Fragment>
     );
 };
 
