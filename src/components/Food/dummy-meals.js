@@ -1,8 +1,3 @@
-import './App.css';
-import Header from "./components/Header/Header";
-import MealsSummary from "./components/Food/MealsSummary";
-import MealsList from "./components/Food/MealsList";
-
 const DUMMY_MEALS = [
     {
         id: 'm1',
@@ -29,16 +24,3 @@ const DUMMY_MEALS = [
         price: 18.99,
     },
 ];
-
-function App() {
-
-  return (
-    <div className="App">
-        <Header />
-        <MealsSummary />
-        <MealsList meals={DUMMY_MEALS} />
-    </div>
-  );
-}
-
-export default App;

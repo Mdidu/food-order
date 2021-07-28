@@ -5,11 +5,14 @@ import CartButton from "./CartButton";
 
 const Header = () => {
 
+    const btnHandler = () => {
+        console.log("eee");
+    };
     return (
         <React.Fragment>
             <header className={classes.header} >
                 <h1>ReactMeals</h1>
-                <CartButton type="button" />
+                <CartButton type="button" onClick={btnHandler}/>
             </header>
             <div className={classes['main-image']}>
                 <img src={image} alt="Image header" />
