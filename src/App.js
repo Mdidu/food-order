@@ -1,4 +1,4 @@
-import './App.css';
+import { Fragment } from 'react';
 import Header from "./components/Layout/Header";
 import MealsSummary from "./components/Meals/MealsSummary";
 import MealsList from "./components/Meals/MealsList";
@@ -33,11 +33,11 @@ const DUMMY_MEALS = [
 function App() {
 
   return (
-    <div className="App">
+    <Fragment>
         <Header />
         <MealsSummary />
         <MealsList meals={DUMMY_MEALS} />
-    </div>
+    </Fragment>
   );
 }
 

@@ -1,23 +1,24 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import classes from './Header.module.css';
-import image from '../assets/meals.jpg';
 import CartButton from "../Cart/CartButton";
 
-const Header = () => {
+import mealsImage from '../../assets/meals.jpg';
+
+const Header = props => {
 
     const btnHandler = () => {
         console.log("eee");
     };
     return (
-        <React.Fragment>
+        <Fragment>
             <header className={classes.header} >
                 <h1>ReactMeals</h1>
                 <CartButton type="button" onClick={btnHandler}/>
             </header>
             <div className={classes['main-image']}>
-                <img src={image} alt="Image header" />
+                <img src={mealsImage} alt="Table full foods" />
             </div>
-        </React.Fragment>
+        </Fragment>
     );
 };
 
