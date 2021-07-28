@@ -1,7 +1,7 @@
 import './App.css';
-import Header from "./components/Header/Header";
-import MealsSummary from "./components/Food/MealsSummary";
-import MealsList from "./components/Food/MealsList";
+import Header from "./components/Layout/Header";
+import MealsSummary from "./components/Meals/MealsSummary";
+import MealsList from "./components/Meals/MealsList";
 
 const DUMMY_MEALS = [
     {
