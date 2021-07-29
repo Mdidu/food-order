@@ -1,27 +1,29 @@
-import './App.css';
-import Header from "./components/Header/Header";
+import { useState } from 'react';
+import Header from "./components/Layout/Header";
+import Meals from './components/Meals/Meals';
+import Cart from './components/Cart/Cart';
+import CartProvider from './store/CartProvider';
 
 function App() {
-  /* TODO
-  * (1) = 1 component
-navbar (1)
-Bouton panier (1)
-------------------
-1 card for explication (1?)
 
-item (1) = Nom + define + price + quantity + btn add
-------------------
-UI
-Card (1)
-Button (1)
+    const [cartIsShown, setCartIsShown] = useState(false);
 
------------------
-1 modal (1)
-  * */
+    const showCartHandler = () => {
+        setCartIsShown(true);
+    };
+
+    const hideCartHandler = () => {
+        setCartIsShown(false);
+    };
+
   return (
-    <div className="App">
-      <Header />
-    </div>
+    <CartProvider>
+        {cartIsShown && <Cart onClose={hideCartHandler} />}
+        <Header onShowCart={showCartHandler} />
+        <main>
+            <Meals></Meals>
+        </main>
+    </CartProvider>
   );
 }
 
