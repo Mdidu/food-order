@@ -1,6 +1,6 @@
 import React from 'react';
 import Card from '../UI/Card';
-import Meal from './Meal';
+import MealItem from './MealItem/MealItem';
 
 const DUMMY_MEALS = [
     {
@@ -29,17 +29,17 @@ const DUMMY_MEALS = [
     },
 ];
 
-const MealsList = props => {
-    const mealsList = DUMMY_MEALS.map(meal => <li></li>);
+const AvailableMeals = props => {
+    const mealsList = DUMMY_MEALS.map(meal => <MealItem key={meal.id} title={meal.name} description={meal.description} price={meal.price} amount="Amount"></MealItem>);
     return (
-        <Card className="meals">
-            <ul>
-                {props.meals.map((meal) => (
-                    <Meal key={meal.id} title={meal.name} description={meal.description} price={meal.price} amount="Amount"></Meal>
-                ))}
-            </ul>
-        </Card>
+        <section className="meals">
+            <Card>
+                <ul>
+                    {mealsList}
+                </ul>
+            </Card>
+        </section>
     );
 };
 
-export default MealsList;
+export default AvailableMeals;

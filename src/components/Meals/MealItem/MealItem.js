@@ -1,14 +1,15 @@
 import React from 'react';
 import Button from '../../UI/Button';
-import classes from './Meal.module.css';
+import classes from './MealItem.module.css';
 
-const Meal = props => {
+const MealItem = props => {
+    const price = `${props.price.toFixed(2)}`;
     return (
         <li >
             <div className={classes.meal}>
-                <h3>{props.title}</h3>
-                <p className={classes.description}>{props.description}</p>
-                <span className={classes.price}>{props.price}</span>
+                <div><h3>{props.title}</h3></div>
+                <div className={classes.description}>{props.description}</div>
+                <div className={classes.price}>{price}</div>
                 <div>
                     <span>{props.amount}</span>
                     <input type="number" className={classes.amount} value="1"/>
@@ -17,10 +18,8 @@ const Meal = props => {
                     <Button >+ Add</Button>
                 </div>
             </div>
-
-
         </li>
     );
 };
 
-export default Meal;
+export default MealItem;
