@@ -1,3 +1,15 @@
+Application de réservation de repas conçu en React
+
+Actuellement en V1, des évolutions sont prévu comme par exemple connecter l'application à un back-end afin de pouvoir communiquer avec une base de donnée.
+
+
+Screen de l'interface graphique
+![image](https://user-images.githubusercontent.com/56021893/127651665-1ea2a212-2171-4158-b29d-b18441421056.png)
+![image](https://user-images.githubusercontent.com/56021893/127651710-b676693f-c57d-4bd1-b8fe-c08891de2c44.png)
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
