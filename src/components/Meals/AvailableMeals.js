@@ -1,4 +1,4 @@
-import React, { useRef ,useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from '../UI/Card';
 import MealItem from './MealItem/MealItem';
 import './AvailableMeals.css';
@@ -6,47 +6,48 @@ import './AvailableMeals.css';
 const AvailableMeals = props => {
     const [meals, setMeals] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [error, setError] = useState();
 
-    const oneExect = useRef(false);
+    useEffect(() => {
+        const fetchMeals = async () => {
 
-    const fetchMealsHandler = useCallback(async () => {
-        oneExect.current = true;
-
-        try {
             const response = await fetch("https://react-http-cfe83-default-rtdb.europe-west1.firebasedatabase.app/Meals.json");
 
             if(!response.ok) {
-                throw new Error("No data");
+                throw new Error("Something went wrong !");
             }
 
             const data = await response.json();
+            const loadedMeals = [];
 
-            const arrayMeals = [data.Meal1, data.Meal2, data.Meal3, data.Meal4];
+            for (const dataKey in data) {
+                loadedMeals.push({
+                    id: dataKey,
+                    name: data[dataKey].name,
+                    description: data[dataKey].description,
+                    price: data[dataKey].price
+                });
+            }
+            setMeals(loadedMeals);
+            setIsLoading(false);
+        };
 
-            const transformMeals = arrayMeals.map(mealData => {
-                return {
-                    id: mealData.id,
-                    name: mealData.name,
-                    description: mealData.description,
-                    price: mealData.price
-                }
-            });
-
-            console.log("da");
-            setMeals(transformMeals);
-            console.log("do");
-
-        } catch (error) {
+        // La méthode catch permet de ne pas entourer fetchMeals d'un try-catch mais de quand même avoir le catch
+        fetchMeals().catch(error => {
+            setIsLoading(false);
             setError(error.message);
-        }
-    }, [oneExect]);
-
-    if(!oneExect.current) {
-        fetchMealsHandler();
-    }
+        });
+    }, []);
 
     let content = <p>Loading ....</p>;
+
+    if(!isLoading) {
+        content = <p>Found no movies.</p>;
+    }
+
+    if(error) {
+        content = <p>{error}</p>;
+    }
 
     if(meals.length > 0) {
         content = meals.map(meal => <MealItem
@@ -56,17 +57,6 @@ const AvailableMeals = props => {
             description={meal.description}
             price={meal.price}
             amount="Amount" />);
-    } else {
-        if(isLoading) setIsLoading(!isLoading);
-    }
-
-    if(error) {
-        content = <p>{error}</p>;
-        setError(null);
-    }
-
-    if(!isLoading && meals.length === 0) {
-        content = <p>Found no movies.</p>;
     }
 
     return (
